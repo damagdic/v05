@@ -11,21 +11,17 @@ protected:
 	void on_paint(HDC hdc) override
 	{
 		if (points.empty()) return; // nothing to draw
-		else {
 			MoveToEx(hdc, points.front().x, points.front().y, NULL);
 			for (POINT p : points)
 			{
 				LineTo(hdc, p.x, p.y); // draw line to each point
 			}
-			// TODO: iterate over points in container and draw polyline
-		}
 	}
 	void on_left_button_down(POINT p) override
 	{
 		points.push_back(p); // add point to container
 		InvalidateRect(*this, nullptr, true); // request repaint
 	}
-	// TODO: add point to container
 	
 	void on_key_down(int vk) override
 	{
@@ -50,8 +46,6 @@ protected:
 			break;
 		}
 
-	// TODO: Esc - empty container
-	// TODO: Backspace - remove last point
 	}
 	void on_destroy() override
 	{
